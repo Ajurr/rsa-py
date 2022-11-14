@@ -47,9 +47,9 @@ def encryption(p, q, m):
     #primality testing of p and q
     while True:
         if(prime(p) == False):
-            p = int(input(str(p) + ' is not prime, please input a prime number: '))
+            p = int(input(p, ' is not prime, please input a prime number: '))
         elif(prime(q) == False):
-            q = int(input(str(q) + ' is not prime, please input a prime number: '))
+            q = int(input(q, ' is not prime, please input a prime number: '))
         else:
             break
 
@@ -74,7 +74,7 @@ def encryption(p, q, m):
         print("Multiplicative inverse for the given encryption key does not exist. Choose a different encryption key ")
     
     #publish the encryption key and product of 2 primes n
-    print("encryption key e: "+ str(e) + "\n" + "product of two primes n: " + str(n)) 
+    print("encryption key e: ", e, "\n" + "product of two primes n: " , n) 
 
     k = random.randint(1, 10) #random number of chunks to split into, 1-10 is arbitrary for examples
     chunkLength = len(str(m)) // k #calculating chunk length here
@@ -85,7 +85,7 @@ def encryption(p, q, m):
         mChunked.append(str(m)[idx : idx + chunkLength])
     for i in mChunked:
         c.append(int(i) ** e % n)
-    print("encrypted message: " + str(c))
+    print("encrypted message: ", c)
     return c, d, n
 
 #decryption method applies multiplicative inverse of e calculated earlier to reverse the encryption method transform back to the original message
@@ -93,7 +93,7 @@ def decryption(c, d, n):
     m = []
     for i in c:
         m.append(int(i)**d % n)
-    print("decrypted message: "+ str(m))
+    print("decrypted message: ", m)
 
 if __name__ == '__main__':
     c, d, n = encryption(int(input("p: ")), int(input("q: ")), int(input("message: ")))
